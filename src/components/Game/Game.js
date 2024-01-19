@@ -4,29 +4,41 @@ import { generateRandomID, sample } from "../../utils";
 import { WORDS } from "../../data";
 import GuessResults from "../GuessResults";
 import GuessInput from "../GuessInput";
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
+import Banner from "../Banner"; // Pick a random word on every pageload.
 
 // Pick a random word on every pageload.
-const answer = sample(WORDS);
+export const ANSWER = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
+console.info({ ANSWER });
 
 function Game() {
   const [guesses, setGuesses] = React.useState([]);
+  const [isGameWon, setIsGameWon] = React.useState(false);
 
+  const isGameEnded =
+    isGameWon || (guesses.length >= NUM_OF_GUESSES_ALLOWED && !isGameWon);
   const addGuess = (guess) => {
+    // Add the guess to the guesses array.
     const newGuess = {
       title: guess,
-      // Generate a random ID to use as the key for React.
+      // Generate a random ID used as React Key
       id: generateRandomID(),
     };
     const nextGuesses = [...guesses, newGuess];
     setGuesses(nextGuesses);
+
+    // Check if the guess is correct.
+    setIsGameWon(guess === ANSWER);
   };
   return (
     <>
       {" "}
       <GuessResults guesses={guesses} />
-      <GuessInput addGuess={addGuess} />
+      <GuessInput disabled={isGameEnded} addGuess={addGuess} />
+      {isGameEnded && (
+        <Banner isGameWon={isGameWon} guessCount={guesses.length} />
+      )}
     </>
   );
 }

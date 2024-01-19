@@ -1,7 +1,7 @@
 import React from "react";
 import { range } from "../../utils";
 import { checkGuess } from "../../game-helpers";
-import { ANSWER } from "../../constants";
+import { ANSWER } from "../Game";
 
 function Guess({ guess }) {
   const isValidGuess = typeof guess !== "undefined";
