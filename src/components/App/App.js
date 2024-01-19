@@ -11,6 +11,7 @@ function App() {
   const addGuess = (guess) => {
     const newGuess = {
       title: guess,
+      // Generate a random ID to use as the key for React.
       id: generateRandomID(),
     };
     const nextGuesses = [...guesses, newGuess];
