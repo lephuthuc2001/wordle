@@ -2,6 +2,7 @@
  * Thanks to Github user dylano for supplying a more-accurate
  * solving algorithm!
  */
+import { GUESS_STATUSES } from "./constants";
 
 export function checkGuess(guess, answer) {
   // This constant is a placeholder that indicates we've successfully
@@ -22,7 +23,7 @@ export function checkGuess(guess, answer) {
     if (guessChars[i] === answerChars[i]) {
       result[i] = {
         letter: guessChars[i],
-        status: "correct",
+        status: GUESS_STATUSES.CORRECT,
       };
       answerChars[i] = SOLVED_CHAR;
       guessChars[i] = SOLVED_CHAR;
@@ -36,14 +37,14 @@ export function checkGuess(guess, answer) {
       continue;
     }
 
-    let status = "incorrect";
+    let status = GUESS_STATUSES.INCORRECT;
 
     const misplacedIndex = answerChars.findIndex(
       (char) => char === guessChars[i]
     );
 
     if (misplacedIndex >= 0) {
-      status = "misplaced";
+      status = GUESS_STATUSES.MISPLACED;
       answerChars[misplacedIndex] = SOLVED_CHAR;
     }
 

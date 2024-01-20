@@ -27,3 +27,9 @@ export const ALPHABET_CHARACTERS = [
   "y",
   "z",
 ];
+
+export const GUESS_STATUSES = {
+  CORRECT: "correct",
+  INCORRECT: "incorrect",
+  MISPLACED: "misplaced",
+};
