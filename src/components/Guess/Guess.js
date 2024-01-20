@@ -1,6 +1,5 @@
 import React from "react";
 import { range } from "../../utils";
-import { checkGuess } from "../../game-helpers";
 
 function Guess({ guess, answer }) {
   const isValidGuess = typeof guess !== "undefined";
@@ -8,9 +7,7 @@ function Guess({ guess, answer }) {
   let cells = range(5).map((i) => <span key={i} className="cell"></span>);
 
   if (isValidGuess) {
-    const guessCheckResult = checkGuess(guess.title, answer);
-
-    cells = guessCheckResult.map((letter, i) => (
+    cells = guess.guessCheckResult.map((letter, i) => (
       <span className={`cell ${letter.status}`} key={i}>
         {letter.letter}
       </span>
