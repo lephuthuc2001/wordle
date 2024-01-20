@@ -9,8 +9,5 @@ export function generateGuessStatusMap(guesses) {
     });
   });
 
-  console.log(guessStatusMap.keys());
-  console.log(guessStatusMap.values());
-  console.log(guessStatusMap.get("L"));
   return guessStatusMap;
 }
