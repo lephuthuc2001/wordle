@@ -1,7 +1,7 @@
 import React from "react";
 import { range } from "../../utils";
 
-function Guess({ guess, answer }) {
+function Guess({ guess }) {
   const isValidGuess = typeof guess !== "undefined";
 
   let cells = range(5).map((i) => <span key={i} className="cell"></span>);
