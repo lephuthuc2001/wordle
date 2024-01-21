@@ -30,7 +30,7 @@ function KeyRow({ rangeStart, rangeEnd, guessStatusMap }) {
   );
 }
 
-function KeyBoard({ guesses }) {
+function KeyBoard({ guesses, answer }) {
   const ranges = [
     [0, 9],
     [10, 18],
@@ -38,7 +38,7 @@ function KeyBoard({ guesses }) {
   ];
 
   const guessStatusMap =
-    guesses.length > 0 ? generateGuessStatusMap(guesses) : undefined;
+    guesses.length > 0 ? generateGuessStatusMap(guesses, answer) : undefined;
   return (
     <div className="keyboard">
       {ranges.map((range, i) => (

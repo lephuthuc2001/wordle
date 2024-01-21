@@ -1,10 +1,12 @@
 import { GUESS_STATUSES } from "../../constants";
+import { checkGuess } from "../../game-helpers";
 
-export function generateGuessStatusMap(guesses) {
+export function generateGuessStatusMap(guesses, answer) {
   const guessStatusMap = new Map();
 
   guesses.forEach((guess) => {
-    guess.guessCheckResult.forEach((character) => {
+    const guessCheckResult = checkGuess(guess.value, answer);
+    guessCheckResult.forEach((character) => {
       const existingStatus = guessStatusMap.get(character.letter);
       const newStatus = character.status;
 

@@ -6,8 +6,8 @@ import GuessResults from "../GuessResults";
 import GuessInput from "../GuessInput";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import GameOverBanner from "../GameOverBanner";
+
 import KeyBoard from "../KeyBoard";
-import { checkGuess } from "../../game-helpers";
 // Pick a random word on every pageload.
 export const ANSWER = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
@@ -24,8 +24,7 @@ function Game() {
     const newGuess = {
       // Generate a random ID used as React Key
       id: generateRandomID(),
-      title: tentativeGuess,
-      guessCheckResult: checkGuess(tentativeGuess, answer),
+      value: tentativeGuess,
     };
 
     // Add the guess to the guesses array.
@@ -55,7 +54,7 @@ function Game() {
           resetGame={resetGame}
         />
       )}
-      {!isGameEnded && <KeyBoard guesses={guesses} />}
+      {!isGameEnded && <KeyBoard answer={answer} guesses={guesses} />}
     </>
   );
 }
