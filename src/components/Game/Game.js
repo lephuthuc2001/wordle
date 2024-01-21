@@ -21,7 +21,6 @@ function Game() {
   const isGameEnded =
     isGameWon || (guesses.length >= NUM_OF_GUESSES_ALLOWED && !isGameWon);
   const addGuess = (guess) => {
-    // Add the guess to the guesses array.
     const newGuess = {
       // Generate a random ID used as React Key
       id: generateRandomID(),
@@ -29,6 +28,7 @@ function Game() {
       guessCheckResult: checkGuess(guess, answer),
     };
 
+    // Add the guess to the guesses array.
     const nextGuesses = [...guesses, newGuess];
     setGuesses(nextGuesses);
 
@@ -36,12 +36,12 @@ function Game() {
     setIsGameWon(guess === answer);
   };
 
-  console.log(answer);
   const resetGame = () => {
     setGuesses([]);
     setIsGameWon(false);
     setAnswer(sample(WORDS));
   };
+
   return (
     <>
       {" "}
