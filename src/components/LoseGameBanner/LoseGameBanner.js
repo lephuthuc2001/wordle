@@ -1,10 +1,9 @@
 import React from "react";
 import Banner from "../Banner";
 
-function LoseGameBanner({ answer, resetButton }) {
+function LoseGameBanner({ answer, action, actionText }) {
   return (
-    <Banner status="sad">
-      {resetButton}
+    <Banner action={action} actionText={actionText} status="sad">
       <p>
         Sorry, the correct answer is <strong>{answer}</strong>.
       </p>

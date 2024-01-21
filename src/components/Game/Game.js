@@ -43,16 +43,14 @@ function Game() {
     setAnswer(sample(WORDS));
   };
 
-  const resetButton = (
-    <button type="reset" onClick={resetGame}>
-      Reset
-    </button>
-  );
-
   const gameOverBanner = isGameWon ? (
-    <WinGameBanner resetButton={resetButton} guessCount={guesses.length} />
+    <WinGameBanner
+      action={resetGame}
+      actionText={"Reset"}
+      guessCount={guesses.length}
+    />
   ) : (
-    <LoseGameBanner resetButton={resetButton} answer={answer} />
+    <LoseGameBanner action={resetGame} actionText={"Reset"} answer={answer} />
   );
   return (
     <>

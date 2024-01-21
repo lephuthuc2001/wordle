@@ -1,10 +1,9 @@
 import React from "react";
 import Banner from "../Banner";
 
-function WinGameBanner({ guessCount, resetButton }) {
+function WinGameBanner({ guessCount, action, actionText }) {
   return (
-    <Banner status="happy">
-      {resetButton}
+    <Banner action={action} actionText={actionText} status="happy">
       <p>
         <strong>Congratulations!</strong> Got it in{" "}
         <strong>
