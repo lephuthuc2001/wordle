@@ -5,9 +5,10 @@ import { WORDS } from "../../data";
 import GuessResults from "../GuessResults";
 import GuessInput from "../GuessInput";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
-import GameOverBanner from "../GameOverBanner";
 
 import KeyBoard from "../KeyBoard";
+import LoseGameBanner from "../LoseGameBanner";
+import WinGameBanner from "../WinGameBanner";
 // Pick a random word on every pageload.
 export const ANSWER = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
@@ -42,19 +43,23 @@ function Game() {
     setAnswer(sample(WORDS));
   };
 
+  const resetButton = (
+    <button type="reset" onClick={resetGame}>
+      Reset
+    </button>
+  );
+
+  const gameOverBanner = isGameWon ? (
+    <WinGameBanner resetButton={resetButton} guessCount={guesses.length} />
+  ) : (
+    <LoseGameBanner resetButton={resetButton} answer={answer} />
+  );
   return (
     <>
       {" "}
       <GuessResults answer={answer} guesses={guesses} />
       <GuessInput disabled={isGameEnded} addGuess={addGuess} />
-      {isGameEnded && (
-        <GameOverBanner
-          isGameWon={isGameWon}
-          answer={answer}
-          guessCount={guesses.length}
-          resetGame={resetGame}
-        />
-      )}
+      {isGameEnded && gameOverBanner}
       {!isGameEnded && <KeyBoard answer={answer} guesses={guesses} />}
     </>
   );
