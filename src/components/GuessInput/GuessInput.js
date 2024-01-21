@@ -3,6 +3,20 @@ import React from "react";
 function GuessInput({ addGuess, disabled }) {
   const [tentativeGuess, setTentativeGuess] = React.useState("");
 
+  const validateGuess = (event) => {
+    // Check if the guess is valid.
+    const isGuessValid = event.target.validity.patternMismatch === false;
+
+    if (isGuessValid) {
+      // If the guess is valid, we'll clear the custom error message.
+      event.target.setCustomValidity("");
+    } else {
+      event.target.setCustomValidity("Enter 5 letters");
+    }
+
+    // Check the validity of the input field.
+    event.target.reportValidity();
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -10,25 +24,24 @@ function GuessInput({ addGuess, disabled }) {
     setTentativeGuess("");
   };
 
-  const handleGuessInputChange = (e) =>
+  const handleGuessInputChange = (e) => {
     setTentativeGuess(e.target.value.toUpperCase());
 
-  const handleInvalidGuess = (e) => {
-    e.target.setCustomValidity("Please enter a 5 letter word");
+    // Validate the guess for every change.
+    validateGuess(e);
   };
 
   return (
     <form onSubmit={handleSubmit} className="guess-input-wrapper">
       <label htmlFor="guess-input">Enter guess:</label>
       <input
-        required={true}
-        minLength={5}
-        maxLength={5}
-        value={tentativeGuess}
-        onChange={handleGuessInputChange}
-        onInvalid={handleInvalidGuess}
         id="guess-input"
         type="text"
+        required={true}
+        pattern={".{5}"}
+        value={tentativeGuess}
+        placeholder={"Enter 5 letters"}
+        onChange={handleGuessInputChange}
         disabled={disabled}
       />
     </form>
