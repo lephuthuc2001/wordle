@@ -39,6 +39,7 @@ function KeyBoard({ guesses, answer }) {
 
   const guessStatusMap =
     guesses.length > 0 ? generateGuessStatusMap(guesses, answer) : undefined;
+
   return (
     <div className="keyboard">
       {ranges.map((range, i) => (

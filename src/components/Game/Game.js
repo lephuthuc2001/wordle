@@ -20,6 +20,7 @@ function Game() {
 
   const isGameEnded =
     isGameWon || (guesses.length >= NUM_OF_GUESSES_ALLOWED && !isGameWon);
+
   const addGuess = (tentativeGuess) => {
     const newGuess = {
       // Generate a random ID used as React Key

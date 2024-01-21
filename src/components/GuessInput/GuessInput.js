@@ -17,6 +17,7 @@ function GuessInput({ addGuess, disabled }) {
     // Check the validity of the input field.
     event.target.reportValidity();
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 

@@ -9,6 +9,7 @@ function Guess({ guess, answer }) {
 
   if (isValidGuess) {
     const guessCheckResult = checkGuess(guess.value, answer);
+
     cells = guessCheckResult.map((letter, i) => (
       <span className={`cell ${letter.status}`} key={i}>
         {letter.letter}
