@@ -1,5 +1,6 @@
 import React from "react";
 import { checkGuess } from "../../game-helpers";
+import { range } from "../../utils";
 
 function Cell({ letter = "", status = "" }) {
   const cellClassName = `cell ${status}`;
@@ -15,7 +16,7 @@ const generateCells = (guess, answer) => {
     ));
   }
 
-  return Array(5).fill(<Cell />);
+  return range(5).map((num) => <Cell key={num} />);
 };
 
 function Guess({ guess, answer }) {
